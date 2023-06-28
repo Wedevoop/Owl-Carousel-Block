@@ -1,0 +1,28 @@
+{
+	"name": "owl-testimonial-carousel",
+	"version": "0.1.0",
+	"author": "The WordPress Contributors",
+	"license": "GPL-2.0-or-later",
+	"main": "build/index.js",
+	"scripts": {
+		"build": "wp-scripts build --webpack-copy-php --output-path=build/block",
+		"start": "wp-scripts start --webpack-copy-php --output-path=build/block",
+		"build:plugin": "wp-scripts build ./testimonial-meta-panel --output-path=build/plugin",
+		"start:plugin": "wp-scripts start ./testimonial-meta-panel --output-path=build/plugin",
+		"format": "wp-scripts format",
+		"lint:css": "wp-scripts lint-style",
+		"lint:js": "wp-scripts lint-js",
+		"packages-update": "wp-scripts packages-update",
+		"plugin-zip": "wp-scripts plugin-zip"
+	},
+	"devDependencies": {
+		"@wordpress/components": "^25.1.0",
+		"@wordpress/core-data": "^6.12.0",
+		"@wordpress/data": "^9.5.0",
+		"@wordpress/edit-post": "^7.12.0",
+		"@wordpress/i18n": "^4.36.0",
+		"@wordpress/plugins": "^6.3.0",
+		"@wordpress/scripts": "^26.6.0",
+		"@wordpress/server-side-render": "^4.12.0"
+	}
+}
