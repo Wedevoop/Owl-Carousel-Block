@@ -1,4 +1,5 @@
-<?php /* Template Name: Portfolio */
+<?php
+
 $args = array(
     'post_type' => 'testimonial',
     'post_status' => 'publish'
@@ -42,8 +43,8 @@ if ($testimonial->have_posts()): ?>
         $class = explode(' ', $atts['className']);
         $class = implode('.', $class);
     ?>
-    <script>
-        jQuery('document').ready(function () {
+    <script type="text/javascript">
+        jQuery(document).ready(function () {
             jQuery(".owl-carousel.<?php echo $class; ?>").owlCarousel({
                 margin: 20,
                 loop: true,

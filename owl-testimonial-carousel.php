@@ -128,44 +128,33 @@ function wedevoop_slider_owl_testimonial_carousel_block_assets() {
 			true
 		);
 	}
-}
 
-add_action( 'enqueue_block_editor_assets', 'wedevoop_slider_owl_testimonial_carousel_block_assets' );
-
-
-function enqueue_owl_carousle_script()
-{
 	wp_enqueue_script(
-		'owl-carousel',
-		plugin_dir_url(__FILE__).'/dist/owl-carousel/dist/owl.carousel.min.js',
+		'owl-carousel-script',
+		plugin_dir_url(__FILE__).'dist/owl-carousel/dist/owl.carousel.min.js',
 		array('jquery')
 	);
 
 	wp_enqueue_style(
-		'owl-carousel',
-		plugin_dir_url(__FILE__).'/dist/owl-carousel/dist/assets/owl.carousel.css',
+		'owl-carousel-style',
+		plugin_dir_url(__FILE__).'dist/owl-carousel/dist/assets/owl.carousel.css',
 	);
 }
 
-add_action( 'enqueue_block_editor_assets', 'enqueue_owl_carousle_script' );
+add_action( 'enqueue_block_editor_assets', 'wedevoop_slider_owl_testimonial_carousel_block_assets' );
 
-function enqueue_owl_carousle_front_assets()
-{	
-	if (!is_admin()) {
-		wp_enqueue_script(
-			'owl-carousel',
-			plugins_url('/dist/owl-carousel/dist/owl.carousel.min.js', __FILE__),
-			array('jquery')
-		);
-	}
+function wedevoop_slider_owl_asset()
+{
+	wp_enqueue_style(
+		'owl-carousel',
+		plugins_url('dist/owl-carousel/dist/assets/owl.carousel.css', __FILE__)
+	);
 
-	if (!is_admin()) {
-
-		wp_enqueue_style(
-			'owl-carousel',
-			plugins_url('/dist/owl-carousel/dist/assets/owl.carousel.css', __FILE__)
-		);
-	}
+	wp_enqueue_script(
+		'owl-carousel',
+		plugins_url('dist/owl-carousel/dist/owl.carousel.min.js', __FILE__),
+		array('jquery')
+	);
 }
 
-add_action('enqueue_block_assets', 'enqueue_owl_carousle_front_assets');
+add_action( 'enqueue_block_assets', 'wedevoop_slider_owl_asset' );
