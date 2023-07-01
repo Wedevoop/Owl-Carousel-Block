@@ -1,2 +1,6 @@
 # Owl Carousel Block
- Wordpress owl carousel testimonial block
+ A custom WordPresss owl carousel testimonial block to display testimonials
+
+# Bug
+  Found any bugs please report in the issue section.
+
