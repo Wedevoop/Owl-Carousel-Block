@@ -13,8 +13,6 @@ import { __ } from "@wordpress/i18n";
  */
 import { useBlockProps, InspectorControls } from "@wordpress/block-editor";
 
-import ServerSideRender from '@wordpress/server-side-render';
-
 /**
  * Lets webpack process CSS, SASS or SCSS files referenced in JavaScript files.
  * Those files can contain any CSS code that gets applied to the editor.
@@ -23,9 +21,23 @@ import ServerSideRender from '@wordpress/server-side-render';
  */
 import "./editor.scss";
 
-import { TextControl } from "@wordpress/components";
-import { PanelBody } from "@wordpress/components";
-import { SelectControl } from "@wordpress/components";
+import {
+	TextControl,
+	PanelBody,
+	SelectControl,
+	Spinner,
+} from "@wordpress/components";
+
+// import { select } from "@wordpress/data";
+
+import { useEntityRecords } from "@wordpress/core-data";
+
+import { RawHTML } from "@wordpress/element";
+
+import DOMPurify from "dompurify";
+
+import OwlCarousel from "react-owl-carousel";
+import "owl.carousel/dist/assets/owl.carousel.css";
 
 /**
  * The edit function describes the structure of your block in the context of the
@@ -35,8 +47,65 @@ import { SelectControl } from "@wordpress/components";
  * @return {WPElement} Element to render.
  */
 
+const TestimonialPosts = ({ resolved, items, attributes }) => {
+	if (!resolved) {
+		return <Spinner />;
+	}
+
+	if (items.length === 0) {
+		return <p>No post found</p>;
+	}
+
+	return (
+		<OwlCarousel
+			className="owl-theme"
+			loop
+			margin={20}
+			dots={attributes.dots}
+			autoplay={attributes.autoplay}
+			autoplayTimeout={attributes.autoplaySpeed}
+			responsive={{
+				0: {
+					items: attributes.sliderToShowOnMobile,
+					nav: false,
+				},
+				600: {
+					items: attributes.sliderToShowOnTablet,
+					nav: false,
+				},
+				1000: {
+					items: attributes.slidesToShow,
+					nav: false,
+				},
+			}}
+		>
+			{items.map((el, elIndex) => (
+				<div class="testimonial" key={elIndex}>
+					{el?._embedded['wp:featuredmedia'][0]?.source_url && (
+						<div class="testimonial_img">
+							 <div class="img_client">
+							 	<img src={el?._embedded['wp:featuredmedia'][0]?.source_url} alt={el?._embedded['wp:featuredmedia'][0]?.['alt-text']} img="img-fluid"/>
+							 </div>
+						</div>
+					)}
+					<div class="testimonial_text">
+						<RawHTML>{DOMPurify.sanitize(el.content.rendered)}</RawHTML>
+					</div>
+					{el?.meta?.testimonial_client_name && el?.meta?.testimonial_client_name.trim().length > 0 && (
+						<div class="testimonial_brand_name">{el?.meta?.testimonial_client_name}</div>
+					)}
+					{el?.meta?.testimonial_client_designation && el?.meta?.testimonial_client_designation.trim().length > 0 && (
+						<div class="testimonial_sub_name">{el?.meta?.testimonial_client_designation}</div>
+					)}
+				</div>
+			))}
+		</OwlCarousel>
+	);
+};
+
 export default function Edit({ attributes, setAttributes }) {
 	const blockProps = useBlockProps();
+	const posts = useEntityRecords("postType", "testimonial", { per_page: -1, '_embed': true });
 	return (
 		<div {...blockProps}>
 			<InspectorControls>
@@ -100,21 +169,6 @@ export default function Edit({ attributes, setAttributes }) {
 						</fieldset>
 						<fieldset>
 							<SelectControl
-								label={__("Arrows", "owl-testimonial-carousel")}
-								value={attributes.arrows}
-								options={[
-									{ label: "Enable", value: true },
-									{ label: "Disable", value: false },
-								]}
-								onChange={(value) =>
-									setAttributes({
-										arrows: value === "true" ? true : false,
-									})
-								}
-							/>
-						</fieldset>
-						<fieldset>
-							<SelectControl
 								label={__("Dots", "owl-testimonial-carousel")}
 								value={attributes.dots}
 								options={[
@@ -162,8 +216,9 @@ export default function Edit({ attributes, setAttributes }) {
 					</div>
 				</PanelBody>
 			</InspectorControls>
-			<ServerSideRender
-				block="wedevoop-slider/owl-testimonial-carousel"
+			<TestimonialPosts
+				resolved={posts.hasResolved}
+				items={posts.records}
 				attributes={attributes}
 			/>
 		</div>

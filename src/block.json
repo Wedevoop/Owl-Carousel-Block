@@ -26,10 +26,6 @@
 			"type": "number",
 			"default": 300
 		},
-		"arrows": {
-			"type": "boolean",
-			"default": true
-		},
 		"dots": {
 			"type": "boolean",
 			"default": true
