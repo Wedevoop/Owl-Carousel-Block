@@ -1,0 +1,66 @@
+/*!***************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[4].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[4].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[4].use[3]!./src/style.scss ***!
+  \***************************************************************************************************************************************************************************************************************************************/
+/**
+ * The following styles get applied both on the front of your site
+ * and in the editor.
+ *
+ * Replace them with your own styles or remove the file completely.
+ */
+.wp-block-wedevoop-slider-owl-testimonial-carousel {
+  background-color: transparent;
+  color: #000;
+  padding: 2px;
+  border: none !important;
+}
+.wp-block-wedevoop-slider-owl-testimonial-carousel .owl-dots {
+  text-align: center;
+}
+.wp-block-wedevoop-slider-owl-testimonial-carousel .owl-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 10px;
+  margin-right: 6px;
+  background-color: #e2e2e2 !important;
+}
+.wp-block-wedevoop-slider-owl-testimonial-carousel .owl-dot.active {
+  background-color: rgb(68, 76, 247) !important;
+}
+.wp-block-wedevoop-slider-owl-testimonial-carousel .testimonial_img {
+  display: inline-block;
+  width: 100%;
+  margin-bottom: 50px;
+}
+.wp-block-wedevoop-slider-owl-testimonial-carousel .testimonial_text {
+  display: inline-block;
+  width: 100%;
+}
+.wp-block-wedevoop-slider-owl-testimonial-carousel .img_client {
+  width: 120px;
+  height: 120px;
+  overflow: hidden;
+  border-radius: 100px;
+  border: 1px solid #000;
+  margin: 0 auto;
+}
+.wp-block-wedevoop-slider-owl-testimonial-carousel .img_client img {
+  display: block;
+  width: 100%;
+}
+.wp-block-wedevoop-slider-owl-testimonial-carousel .testimonial_sub_name {
+  margin-bottom: 15px;
+  font-size: 15px;
+}
+.wp-block-wedevoop-slider-owl-testimonial-carousel .testimonial {
+  width: 100%;
+  max-width: 800px;
+  margin: 0 auto 40px auto;
+  text-align: center;
+}
+.wp-block-wedevoop-slider-owl-testimonial-carousel .testimonial_brand_name {
+  font-size: 16px;
+  font-weight: 300;
+  margin-bottom: 2px;
+}
+
+/*# sourceMappingURL=style-index.css.map*/
